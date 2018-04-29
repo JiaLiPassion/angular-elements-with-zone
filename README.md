@@ -42,4 +42,6 @@ try {
 
 **So monkey patched version of window API only exists inside Angular Elements**
 
-Here is the demo link
+Here is the demo link [DEMO](https://github-zmawnz.stackblitz.io).
+
+In the demo, there is an angular Element with zone.js, and it will run inside of `angular` zone, and outside there is a button `Click outside of Angular Element`, click the button will check eventHandler/setTimeout/Promise is monkey patched or not, and print error stack traces to verify no zone related stack frames are inside.
