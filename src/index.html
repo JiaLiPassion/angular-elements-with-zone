@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularElements</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    window.onload = function () {
+      var btn = document.getElementById('btn1');
+      var logElem = document.getElementById('log');
+      var log = [];
+      btn.addEventListener('click', function () {
+        var error = new Error('click error');
+        log.push('1. click error should not include any zone stack frames: ' + error.stack);
+        log.push('2. window.setTimeout should be native one: ' + setTimeout.toString());
+        setTimeout(function () {
+          error = new Error('setTimeout error');
+          log.push('3. setTimeout should not include any zone stack frames:' + error.stack);
+        });
+        log.push('4. Promise should be native one: ' + Promise.toString());
+        Promise.resolve(1).then(function () {
+          error = new Error('Promise error');
+          log.push('5. Promise should not include any zone stack frames:' + error.stack);
+        });
+
+        setTimeout(function () {
+          log.forEach(function (item) {
+            var li = document.createElement('li');
+            li.innerHTML = item;
+            logElem.appendChild(li);
+          });
+        }, 100);
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <div>
+    I am not a angular element
+    <button id="btn1">Click outside of Angular Element</button>
+    <ul id="log"></ul>
+  </div>
+  <app-elem title="Elements"></app-elem>
+</body>
+
+</html>
