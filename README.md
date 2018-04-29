@@ -6,13 +6,20 @@ In ng-conf 2018, robwormald described the use cases of `Angular Elements`.
 
 1.  If the `Angular Elements` is used inside an Angular application, then `zone.js` is already loaded, so user can develop the `Angular Elements` in normal way.
 
-2.  If the `Angular Elements` is used inside an non-angular application, such as inside a web app which developed with pure js or jquery or react, then we should not use `zone.js`, because `zone.js` will monkey-patch a lot of `global/window` APIs such as `setTimeout/Promise`, so using `zone.js` will impact the APIs outside of `Angular Elements`.
+    * Pro: User can develop `Angular Element` just like they develop normal `Angular Component`, and user can easily expose a lot of existing `Angular Component` to `Angular Element`.
+    * Con: In this case, there is a limitation that the `Angular Element` need to run in a `Angular App Host`.
+
+2.  If the `Angular Elements` is used inside an non-angular application, such as inside a web app which developed with pure js or jquery or react, then we should not use `zone.js`, because `zone.js` will monkey-patch a lot of `global/window` APIs such as `setTimeout/Promise`, so using `zone.js` will impact the APIs outside of `Angular Elements`. Instead, we use `noop zone`.
+    * Pro: Don't need to worry about `zone.js`, no Window API will be patched, and the bundle size is smaller (`zone.js` will be 12k).
+    * Con: User need to take care of `Change Detection` themselves, and existing `Angular Component` will not be easily exported as `Angular Element` in this way.
 
 **So my idea is add a `3rd option`.**
 
 3.  if there is a way to let `zone.js` only patch `global/window` APIs when we `enter Angular Elements` and `restore the original delegate` when we `exit Angular Elements`. We can develop `Angular Elements with zone.js` without impact outside world.
+    * Pro: Still has `ngZone`, user can still develop `Angular Element` just like developing normal `Angular Component`. And of course, the existing `Angular Component` can easily be exported as `Angular Element`. And user don't need to worry about `zone.js` will impact other parts of the webapp which are outside of `Angular Element`.
+    * Con: User still need to load `zone.js`, which will be `12k` bundle.
 
-This is the ![Overview](./overview.png)
+This is the overview ![Overview](./overview.png)
 
 ## How it works
 
