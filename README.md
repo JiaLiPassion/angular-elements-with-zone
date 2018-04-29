@@ -8,7 +8,9 @@ In ng-conf 2018, robwormald described the use cases of `Angular Elements`.
 
 2.  If the `Angular Elements` is used inside an non-angular application, such as inside a web app which developed with pure js or jquery or react, then we should not use `zone.js`, because `zone.js` will monkey-patch a lot of `global/window` APIs such as `setTimeout/Promise`, so using `zone.js` will impact the APIs outside of `Angular Elements`.
 
-So my idea is if there is a way to let `zone.js` only patch `global/window` APIs when we `enter Angular Elements` and `restore the original delegate` when we `exit Angular Elements`. We can develop `Angular Elements with zone.js` without impact outside world.
+**So my idea is add a `3rd option`.**
+
+3.  if there is a way to let `zone.js` only patch `global/window` APIs when we `enter Angular Elements` and `restore the original delegate` when we `exit Angular Elements`. We can develop `Angular Elements with zone.js` without impact outside world.
 
 This is the ![Overview](./overview.png)
 

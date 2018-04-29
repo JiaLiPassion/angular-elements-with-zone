@@ -15,16 +15,16 @@
       var log = [];
       btn.addEventListener('click', function () {
         var error = new Error('click error');
-        log.push('1. click error should not include any zone stack frames: ' + error.stack);
-        log.push('2. window.setTimeout should be native one: ' + setTimeout.toString());
+        log.push('1. click error should not include any zone stack frames:<br/><br/> <div class="log">' + error.stack + '<div>');
+        log.push('2. window.setTimeout should be native one: <br/> <br/><div  class="log">' + setTimeout.toString() + '<div>');
         setTimeout(function () {
           error = new Error('setTimeout error');
-          log.push('3. setTimeout should not include any zone stack frames:' + error.stack);
+          log.push('3. setTimeout should not include any zone stack frames:<br/> <br/><div  class="log">' + error.stack + '<div>');
         });
-        log.push('4. Promise should be native one: ' + Promise.toString());
+        log.push('4. Promise should be native one: <br/><br/><div  class="log">' + Promise.toString() + '<div>');
         Promise.resolve(1).then(function () {
           error = new Error('Promise error');
-          log.push('5. Promise should not include any zone stack frames:' + error.stack);
+          log.push('5. Promise should not include any zone stack frames:<br/><br/><div  class="log">' + error.stack + '<div>');
         });
 
         setTimeout(function () {
