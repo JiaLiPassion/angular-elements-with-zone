@@ -10,7 +10,7 @@ In ng-conf 2018, robwormald described the use cases of `Angular Elements`.
 
 So my idea is if there is a way to let `zone.js` only patch `global/window` APIs when we `enter Angular Elements` and `restore the original delegate` when we `exit Angular Elements`. We can develop `Angular Elements with zone.js` without impact outside world.
 
-This is the [Overview](./overview.png)
+This is the ![Overview](./overview.png)
 
 ## How it works
 

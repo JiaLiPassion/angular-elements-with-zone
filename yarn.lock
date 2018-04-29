@@ -6862,7 +6862,3 @@ yeast@0.1.2:
 yn@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/yn/-/yn-2.0.0.tgz#e5adabc8acf408f6385fc76495684c88e6af689a"
-
-"zone.js@git://github.com/JiaLiPassion/zone.js#module-dist":
-  version "0.8.26"
-  resolved "git://github.com/JiaLiPassion/zone.js#0dcbe8544105a4ce35de33d30e4247d00615708e"
