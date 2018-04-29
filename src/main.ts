@@ -20,5 +20,7 @@ try {
     })
     .catch(err => console.error(err));
 } finally {
+  // unload all monkey-patch, so Window/Global API will be
+  // reverted to native one. No impact to outside world.
   Zone.__unloadAll_patch();
 }

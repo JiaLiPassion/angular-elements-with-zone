@@ -15,16 +15,16 @@
       var log = [];
       btn.addEventListener('click', function () {
         var error = new Error('click error');
-        log.push('1. click error should not include any zone stack frames:<br/><br/> <div class="log">' + error.stack + '<div>');
-        log.push('2. window.setTimeout should be native one: <br/> <br/><div  class="log">' + setTimeout.toString() + '<div>');
+        log.push('1. click error should not include any zone stack frames because it is running with native addEventListener():<br/><br/> <div class="log">' + error.stack + '<div>');
+        log.push('2. window.setTimeout should be native one not Zone Patched one: <br/> <br/><div  class="log">' + setTimeout.toString() + '<div>');
         setTimeout(function () {
           error = new Error('setTimeout error');
-          log.push('3. setTimeout should not include any zone stack frames:<br/> <br/><div  class="log">' + error.stack + '<div>');
+          log.push('3. setTimeout should not include any zone stack frames because setTimeout is native one not Zone patched one:<br/> <br/><div  class="log">' + error.stack + '<div>');
         });
-        log.push('4. Promise should be native one: <br/><br/><div  class="log">' + Promise.toString() + '<div>');
+        log.push('4. Promise should be native one because Promise is native one not Zone patched one: <br/><br/><div  class="log">' + Promise.toString() + '<div>');
         Promise.resolve(1).then(function () {
           error = new Error('Promise error');
-          log.push('5. Promise should not include any zone stack frames:<br/><br/><div  class="log">' + error.stack + '<div>');
+          log.push('5. Promise should not include any zone stack frames because Promise is native one not Zone Patched one:<br/><br/><div  class="log">' + error.stack + '<div>');
         });
 
         setTimeout(function () {

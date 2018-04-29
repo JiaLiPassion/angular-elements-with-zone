@@ -2,3 +2,6 @@
 div.log {
   color: red;
 }
+h1.solid {
+  border-style: solid;
+}
