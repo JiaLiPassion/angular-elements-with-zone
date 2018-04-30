@@ -35,6 +35,11 @@
           });
         }, 100);
       });
+
+      const elem = document.getElementById('elem');
+      elem.addEventListener('update', function (updated) {
+        document.getElementById('updatelog').innerHTML = 'update from angular Element will be in zone: ' + window.Zone.current.name;
+      });
     }
   </script>
 </head>
@@ -43,9 +48,10 @@
   <div>
     I am not a angular element
     <button id="btn1">Click outside of Angular Element</button>
+    <div id="updatelog"></div>
     <ul id="log"></ul>
   </div>
-  <app-elem title="Elements"></app-elem>
+  <app-elem id="elem" title="Elements"></app-elem>
 </body>
 
 </html>

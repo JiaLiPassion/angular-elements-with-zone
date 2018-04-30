@@ -24,7 +24,8 @@
     "@angular/router": "^6.0.0-rc.1",
     "@webcomponents/custom-elements": "^1.1.0",
     "core-js": "^2.5.4",
-    "rxjs": "^6.0.0-rc.0"
+    "rxjs": "^6.0.0-rc.0",
+    "zone.js": "git://github.com/JiaLiPassion/zone.js#module-dist"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.4",
